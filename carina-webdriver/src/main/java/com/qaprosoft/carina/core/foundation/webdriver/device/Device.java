@@ -151,6 +151,10 @@ public class Device extends RemoteDevice {
     public boolean isTv() {
         return getType().equalsIgnoreCase(SpecialKeywords.TV);
     }
+    
+    public boolean isSafari() {
+        return getBrowserName().equalsIgnoreCase(SpecialKeywords.SAFARI);
+    }
 
     public Type getDeviceType() {
         if (isNull()) {
@@ -169,6 +173,9 @@ public class Device extends RemoteDevice {
         } else if (getOs().equalsIgnoreCase(SpecialKeywords.IOS) || getOs().equalsIgnoreCase(SpecialKeywords.MAC)) {
             if (isTablet()) {
                 return Type.IOS_TABLET;
+            }
+            if (isSafari()) {
+                return Type.IOS_SAFARI;
             }
             return Type.IOS_PHONE;
         }
